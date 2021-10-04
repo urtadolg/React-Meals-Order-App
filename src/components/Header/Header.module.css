@@ -1,0 +1,17 @@
+.headerContainer {
+  background-color: rgb(165, 42, 42);
+  width: 100%;
+  height: fit-content;
+  color: white;
+  padding: 10px 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline;
+}

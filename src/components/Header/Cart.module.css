@@ -1,0 +1,49 @@
+.cardContainer {
+  background-color: rgb(80, 20, 20);
+  display: inline;
+  height: fit-content;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.cart {
+  background-color: rgb(165, 42, 42);
+  width: fit-content;
+  text-align: center;
+  padding: 0.2rem 0.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.effect {
+  animation: bump 300ms ease-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
