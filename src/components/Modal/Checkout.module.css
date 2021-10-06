@@ -1,0 +1,58 @@
+.form {
+  width: 100%;
+  height: fit-content;
+  max-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+.input {
+  width: 100%;
+}
+
+.form label {
+  display: block;
+  width: fit-content;
+}
+
+.form input {
+  width: 50%;
+}
+
+.buttons {
+  align-self: flex-end;
+}
+
+.cancelButton {
+  background-color: white;
+  color: rgb(165, 42, 42);
+  border: rgb(165, 42, 42) solid 1px;
+  margin-right: 10px;
+}
+
+.cancelButton:hover {
+  background-color: rgb(255, 231, 231);
+}
+
+.error_input {
+  border-color: red;
+  background-color: salmon;
+  outline-color: red;
+}
+.error_text {
+  color: rgb(224, 0, 0);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+button:disabled {
+  color: rgb(66, 66, 66);
+  background-color: rgb(197, 197, 197);
+}
+button:hover:disabled {
+  color: rgb(66, 66, 66);
+  background-color: rgb(197, 197, 197);
+}

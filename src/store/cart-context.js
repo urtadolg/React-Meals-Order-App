@@ -6,6 +6,7 @@ const MealContext = React.createContext({
   onMealSubmit: () => {},
   onAddSubmit: () => {},
   onRemoveSubmit: () => {},
+  onClearCart: () => {},
 });
 
 export default MealContext;

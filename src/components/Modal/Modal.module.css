@@ -109,6 +109,11 @@
   color: rgb(165, 42, 42);
   border: rgb(165, 42, 42) solid 1px;
 }
+
+.btnClose:hover {
+  background-color: rgb(255, 231, 231);
+}
+
 .btnOrder {
   cursor: pointer;
 }

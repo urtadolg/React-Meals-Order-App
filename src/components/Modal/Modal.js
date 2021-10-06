@@ -1,46 +1,15 @@
 import styles from "./Modal.module.css";
 import Card from "../UI/Card";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import Button from "../UI/Button";
 import MealContext from "../../store/cart-context";
+import Checkout from "./Checkout";
 
 const Modal = (props) => {
   const cartCtx = useContext(MealContext);
-
-  //cart example-----------------
-
-  const cart = [
-    {
-      id: "1",
-      title: "Sushi",
-      desc: "Finest fish and veggies",
-      price: "$22.99",
-      qty: 1,
-    },
-    {
-      id: "2",
-      title: "Schnitzel",
-      desc: "A german spacialty!",
-      price: "$16.50",
-      qty: 3,
-    },
-    {
-      id: "3",
-      title: "Barbecue Burger",
-      desc: "American, raw, meaty",
-      price: "$12.99",
-      qty: 3,
-    },
-    {
-      id: "4",
-      title: "Green Bowl",
-      desc: "Healthy... and green...",
-      price: "$18.99",
-      qty: 3,
-    },
-  ];
-
-  //-----------------------------
+  const [onCheckout, setOnCheckout] = useState(false);
+  const [isOrdering, setIsOrdering] = useState(false);
+  const [isOrdered, setIsOrdered] = useState(false);
 
   // on Add Handler
   const onAddHandler = (item) => {
@@ -97,7 +66,28 @@ const Modal = (props) => {
     );
   });
 
-  return (
+  const onOrderHandler = () => {
+    setOnCheckout(true);
+  };
+
+  const onConfirmHandler = async (userData) => {
+    setIsOrdering(true);
+    await fetch(
+      "https://react-http-first-app-default-rtdb.firebaseio.com/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          user: userData,
+          orderedItems: cartCtx.items,
+        }),
+      }
+    );
+    setIsOrdering(false);
+    setIsOrdered(true);
+    cartCtx.onClearCart();
+  };
+
+  const modal = (
     <Fragment>
       <div className={styles.background} onClick={props.onClose}></div>
       <Card className={styles.cartContainer}>
@@ -106,12 +96,42 @@ const Modal = (props) => {
           <span>Total Amount</span>
           <span>{`$${cartCtx.totalAmount.toFixed(2)}`}</span>
         </div>
-        <div className={styles.btn_close_order}>
-          <Button className={styles.btnClose} onClick={props.onClose}>
-            Close
-          </Button>
-          <Button className={styles.btnOrder}>Order</Button>
-        </div>
+        {onCheckout && (
+          <Checkout onClick={props.onClose} onConfirm={onConfirmHandler} />
+        )}
+        {!onCheckout && (
+          <div className={styles.btn_close_order}>
+            <Button className={styles.btnClose} onClick={props.onClose}>
+              Close
+            </Button>
+            <Button className={styles.btnOrder} onClick={onOrderHandler}>
+              Order
+            </Button>
+          </div>
+        )}
+      </Card>
+    </Fragment>
+  );
+
+  const ordering = <p>Please wait...</p>;
+
+  const ordered = (
+    <Fragment>
+      <p>Successfully sent the order!</p>
+      <br />
+      <Button className={styles.btnClose} onClick={props.onClose}>
+        Close
+      </Button>
+    </Fragment>
+  );
+
+  return (
+    <Fragment>
+      <div className={styles.background} onClick={props.onClose}></div>
+      <Card className={styles.cartContainer}>
+        {!isOrdering && !isOrdered && modal}
+        {isOrdering && !isOrdered && ordering}
+        {!isOrdering && isOrdered && ordered}
       </Card>
     </Fragment>
   );

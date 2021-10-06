@@ -137,7 +137,7 @@ const reducerFunction = (state, action) => {
       //completely remove item from state.items
 
       itemsUpdated = state.items.filter((item) => {
-        return item.title != action.mealRemovedId;
+        return item.title !== action.mealRemovedId;
       });
     }
 
@@ -155,6 +155,14 @@ const reducerFunction = (state, action) => {
       items: itemsUpdated,
       totalAmount: totalAmountUpdated,
       totalQty: totalQtyUpdated,
+    };
+  }
+
+  if (action.type === "CLEAR") {
+    return {
+      items: [],
+      totalAmount: 0,
+      totalQty: 0,
     };
   }
 
@@ -219,6 +227,10 @@ const CartProvider = (props) => {
     });
   };
 
+  const onClearCartHandler = () => {
+    cartDispatchFnction({ type: "CLEAR" });
+  };
+
   return (
     <MealContext.Provider
       value={{
@@ -228,6 +240,7 @@ const CartProvider = (props) => {
         onMealSubmit: onMealSubmitHandler,
         onAddSubmit: onAddSubmitHandler,
         onRemoveSubmit: onRemoveSubmitHandler,
+        onClearCart: onClearCartHandler,
       }}
     >
       {props.children}
