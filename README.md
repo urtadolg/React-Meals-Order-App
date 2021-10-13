@@ -28,12 +28,31 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+
+## React Hooks
+
+The following React Hooks is on this project:
+
+`useEffect()`: It is used to fetch meals data from database. The database used is Firebase;
+
+`useState()`: to store and update available meals list. Used to conditional render Loading state. Used to help handle fetching data errors. Used to validating form data submitted;
+
+`useRef()`: to get access to the input fields;
+
+`useReducer()`: to store, manipulate and render cart items;
+
+`useContext()`: to provide cart data and functions to all app components;
+
+`Fragment`: to wrap some components avoiding extra div's.
