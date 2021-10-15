@@ -43,7 +43,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## React Hooks
 
-The following React Hooks is on this project:
+The following React Hooks are on this project:
 
 `useEffect()`: It is used to fetch meals data from database. The database used is Firebase;
 
