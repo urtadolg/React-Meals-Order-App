@@ -1,5 +1,6 @@
 # React Meals Order App
 
+## Screenshots
 
 <div align="left">
 <img src="https://user-images.githubusercontent.com/89041463/136614515-960f48f4-e2da-4ba7-8f93-f05f08b35037.png" width="100%" />
